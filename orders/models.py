@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import modelsfrom .order_status import OrderStatus
- class Order(model.Models):
+class Order(model.Models):
     status = models.ForeignKey(
         OrderStatus,
         on_delete = models.SET_NULL,
@@ -13,3 +13,9 @@ from django.db import modelsfrom .order_status import OrderStatus
 
     def __str__(self):
         return F"Order #{self.id} - {self.stutus}"
+
+class OrderStatus(models.Model):
+    name = models.CharField(max_lenght=50,unique=True)
+
+    def __str__(self):
+        return self.name
